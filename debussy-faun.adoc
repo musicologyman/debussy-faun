@@ -1,0 +1,8 @@
+= Listening Guide: Debussy, "`Prelude to the Afternoon of a Faun`"
+:imagesdir: ./png
+:nofooter:
+
+Debussy's "`Prelude to the Afternoon of a Faun`" begins with a flute solo that will recur throughout the piece.  At the beginning, we hear three times, each varied slightly.  First we hear the flute alone:
+
+image::debussy-faun.png[]
+
