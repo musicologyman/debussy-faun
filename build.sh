@@ -8,10 +8,10 @@ then
   rm *.pdf
 fi
 
-if [ ! -d png ]
+if [ ! -d ./media/images ]
 then
-  mkdir png
+  mkdir ./media/images
 else
-  rm ./png/*
+  rm ./media/images/*
 fi
-mv *.png ./png/
+mv *.png ./media/images/

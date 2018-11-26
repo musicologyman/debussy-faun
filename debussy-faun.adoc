@@ -1,8 +1,100 @@
 = Listening Guide: Debussy, "`Prelude to the Afternoon of a Faun`"
-:imagesdir: ./png
+:imagesdir: ./media 
 :nofooter:
 
-Debussy's "`Prelude to the Afternoon of a Faun`" begins with a flute solo that will recur throughout the piece.  At the beginning, we hear three times, each varied slightly.  First we hear the flute alone:
+Debussy's "`Prelude to the Afternoon of a Faun`" begins with a flute solo
+that will recur throughout the piece. At the beginning, we hear it four
+times, each varied slightly and extended by an answer from other instrumental
+groups or by an elaboration of the melody by the flute itself. In fact, it`'s
+useful for us to hear this as a *four-breath opening.* 
 
-image::debussy-faun.png[]
+'''
 
+*Time: 0:00* +
+The *first breath* begins with flute alone.
+
+[#example-1]
+.Opening flute solo
+image::./images/debussy-faun.png[] 
+audio::./audio/excerpt-1.mp3[]
+
+The harp and horns answer the flute solo, stating the same idea twice,
+extending it slightly the second time.
+
+'''
+
+*Time: 0:43* + 
+The *second breath* is like the first.
+The flute repeats the solo from the beginning, but instead of presenting it
+without any accompaniment (as was the case at the beginning), Debussy
+supports the flute warm, quiet chords played by the strings. When the flute arrives at the end of the solo, the oboe takes up the line and
+leads the orchestra to the end of the second breath.
+
+'''
+
+*Time: 1:35* +
+In the *third breath,* Debussy varies and expands the solo. While the head motive had been repeated twice in succession in the <<example-1,first breath>>, Debussy interpolates a whimsical elboration between the two statements of the head motive and repeats the second statement at a slightly lower pitch level than the first:
+
+[#example-2]
+.Third breath flute solo
+image::./images/debussy-faun-3.png[]
+audio::./audio/excerpt-3.mp3[]
+
+'''
+*Time: 2:13* +
+The *fourth breath* is the most elaborate yet. This time, after the initial statement of the head motive, Debussy speeds it up, repeating it three times before continuing and bringing the fourth breath to a quiet conclusion:
+
+[#example-3]
+.Fourth breath flute solo
+image::./images/debussy-faun-7.png[]
+audio::./audio/excerpt-4.mp3[]
+
+'''
+
+*Time: 2:47* +
+The foregoing reverie is interrupted when the clarinet takes up an
+agitated variation on the flute's solo:
+
+[#example-4]
+.Clarinet variation on the flute solo
+image::./images/debussy-faun-4.png[]
+audio::./audio/excerpt-5.mp3[]
+
+'''
+*Time: 3:15* +
+At this point, the oboe initiates a transition to the middle
+section of the piece. The oboe's melody culminates in a motive that
+we'll call a "`transitional motive,`" not because the motive itself is used to effect transitions but, rather, because Debussy introduces it in this transitional segement:
+
+[#example-5]
+.Oboe transition
+image::./images/debussy-faun-5.png[]
+audio::./audio/excerpt-6.mp3[]
+
+Transitional motive only:
+
+
+audio::./audio/excerpt-7.mp3[]
+
+'''
+
+The orchestra embarks on a long crescendo that culminates and quickly fades into a brief transition into the middle of the piece based on the 
+
+image::./images/debussy-faun-9.png[]
+audio::./audio/debussy-faun-9.mp3[]
+
+In context:
+
+audio::./audio/excerpt-8.mp3[]
+
+image::./images/debussy-faun-10.png[]
+audio::./audio/excerpt-9.mp3[]
+
+image::./images/debussy-faun-2.png[]
+audio::./audio/excerpt-10.mp3[]
+
+image::./images/debussy-faun-11.png[]
+audio::./audio/excerpt-11.mp3[]
+
+image::./images/debussy-faun-12.png[]
+audio::./audio/excerpt-12.mp3[]

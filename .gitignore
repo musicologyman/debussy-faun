@@ -3,3 +3,6 @@
 *.midi
 *.pdf
 *.mid
+.vscode/
+debussy-faun.html
+listening-guide

@@ -14,11 +14,6 @@
   }
 }
 
-
-#(set! paper-alist (cons '("size A" . (cons (* 8 in) (* 1.75 in))) paper-alist))
-#(set! paper-alist (cons '("size B" . (cons (* 8 in) (* 3 in))) paper-alist))
-#(set! paper-alist (cons '("size C" . (cons (* 8 in) (* 3.5 in))) paper-alist))
-
 headMotive = {
   \set subdivideBeams = ##t
   cis4.~ ( cis8 cis16 b \tuplet 3/2 {ais a gis} g8. a16 b bis )
@@ -28,15 +23,21 @@ excerptA = \relative c'' {
   \clef treble
   \key e \major
   \time 9/8
+  \setAnalysisBracket #blue
   \override TupletBracket #'stencil = ##f
   \stemDown
   \set subdivideBeams = ##t
-  cis4.~ _\markup { \dynamic p \italic { "  doux et expressiv" } }
-  ( cis8 ~ cis16 b \tuplet 3/2 {ais a gis} g8. a16 b bis )
+  \once \override TextScript #'color = #blue
+  cis4.~ \startGroup ^\markup { \bold \fontsize #5.0 "head motive" }
+  ( cis8 ~ cis16 b \tuplet 3/2 {ais a gis} g8. a16 b bis \stopGroup )
   cis4.~ ( cis8 ~ cis16 b \tuplet 3/2 {ais a gis} g8. a16 b bis )
   \stemNeutral
   cis8 \< ( dis gis e4 gis,8 b4. ~
   b8 \! \> b cis ais4 \! )
+}
+
+excerptADynamics = {
+  s2. ^\markup { \dynamic p \italic { "  doux et expressiv" } }
 }
 
 excerptBRight = \relative c' {
@@ -65,19 +66,21 @@ excerptC = \relative c''' {
 excerptD = \relative c'' {
   \key e \major
   \time 12/8
+  \setAnalysisBracket #blue
   \set subdivideBeams = ##t
   \override TupletBracket #'stencil = ##f
   \stemDown
   cis2. \p \< ~ cis8 \! (cis16 b \tuplet 3/2 {ais a gis)} g8. \< (a16 b bis) |
   \time 9/8
+  \once \override TextScript #'color = #blue
   \set Timing.baseMoment = #(ly:make-moment 1/16)
   \set Timing.beatStructure = #'(6)
-  \tuplet 3/2 { cis32 (dis gis }
+  \tuplet 3/2 { cis32\startGroup ^\markup \bold \fontsize #5.0 interpolation (dis gis }
   \tuplet 3/2 {e cis gis} b8 \! ~ b16 gis)
   \stemNeutral
   \set Timing.baseMoment = #(ly:make-moment 1/8)
   \set Timing.beatStructure = #'(3 3 3)
-  fis8 ~ (fis16 gis fis8 ~ fis16 gis dis8. e16)
+  fis8 ~ (fis16 gis fis8 ~ fis16 gis dis8. e16\stopGroup)
   \time 12/8
   a2. ~ a8 ~ (a16 gis \tuplet 3/2 { g fis f) } e8. (fis16 g gis) |
   \time 9/8
@@ -109,13 +112,13 @@ excerptERight = \relative c' {
   f32 \< (g a b cis dis eis dis \!)
   cis8 \> [(\acciaccatura {b16 cis} b8)]
   a \> [(\acciaccatura {g!16 a} g8)] |
-  f32 ^\markup {flute} \! \< (g a b cis dis eis dis \!) 
-    cis8 \mf [ ( \acciaccatura { b16 cis } b8 ) ]
-    \afterGrace a4 \trill { g16 (a) } 
+  f32 ^\markup {flute} \! \< (g a b cis dis eis dis \!)
+  cis8 \mf [ ( \acciaccatura { b16 cis } b8 ) ]
+  \afterGrace a4 \trill { g16 (a) }
   \time 12/8
   \set beatStructure = #'(3 3 3 3)
-  bes2. -> \mf ^\markup { clarinet } ~     
-    bes4 ~ bes32 (a aes g) 
+  bes2. -> \mf ^\markup { clarinet } ~
+  bes4 ~ bes32 (a aes g)
   \stopStaff
   \override TextScript #'Y-offset = 0.0
   s4. ^\markup \italic { etc. }
@@ -140,10 +143,15 @@ excerptELeft = \relative c {
 excerptF = \relative c'' {
   \key e \major
   \time 3/4
+  \setAnalysisBracket #blue
   cis8 ^\markup \italic oboe (b16 gis fis4 ~ fis16 b cis gis'
   fis dis e cis b gis fis b cis8 b16 gis)
-  gis16 (b16 b8) ~ b16 (d d8) ~ d16 (b cis d)
-  gis16 ^\markup \italic violins \cresc (b16 b8) ~ b16 (d d8) ~ d16 (b cis d)
+  \once \override TextScript #'color = #blue
+  \once \override TextScript #'font-size = 5.0
+  gis16 \startGroup ^\markup \bold "transitional motive" (b16 b8) ~ b16 (d d8) ~ d16 (b cis d\stopGroup)
+  \override TextScript #'outside-staff-priority = 100
+  \override HorizontalBracket #'outside-staff-priority = 1000
+  gis16 \startGroup ^\markup \italic violins \cresc (b16 b8) ~ b16 (d d8) ~ d16 (b cis d\stopGroup)
   s \!
 }
 
@@ -181,6 +189,8 @@ excerptH = \relative cis'' {
   \override TupletBracket #'stencil = ##f
   \set subdivideBeams = ##t
   \set Timing.beatStructure = #'(3 3 3 3)
+  \stemDown
+  \tieUp
   cis2. \p ~ (cis8 ~ cis 16 b \tuplet 3/2 { ais16 a gis ) } g8. (a16 b bis) |
   \time 9/8
   <<
@@ -189,9 +199,16 @@ excerptH = \relative cis'' {
       \slurDown
       \set beatStructure = #'(3 3 3)
       \set subdivideBeams = ##t
-      cis32 \startGroup (b a gis g a b c cis b a gis) \stopGroup g16 s16 s8 s8
+      \override HorizontalBracket #'Y-offset = 6.5
+      \once \override TextScript #'color = #blue
+      cis32 \startGroup ^\markup \italic "head motive sped up and repeated"
+      (b a gis g a b c\stopGroup
+      cis\startGroup b a gis) g16
+      \override Rest #'stencil = ##f
+      r32 r32 \stopGroup r8\startGroup r16 r32 r32\stopGroup
+      \revert Rest #'stencil
       \slurUp
-      g32 ([a b c!] ) \stemDown cis \< ( b cis e fis e fis gis \! ) 
+      g32 ([a b c!] ) \stemDown cis \< ( b cis e fis e fis gis \! )
     } \\
     {
       \set beatStructure = #'(3 3 3)
@@ -199,6 +216,8 @@ excerptH = \relative cis'' {
       s4. \slurUp g,!32 ( a b c cis b a gis g a b c) g16 s s8
     }
   >>
+  \stemNeutral
+  \tieNeutral
   \time 12/8
   \set subdivideBeams = ##t
   \set beatStructure = #'(3 3 3 3)
@@ -225,30 +244,71 @@ excerptI = \relative gis' {
   \set subdivideBeams = ##t
   \override Staff.TimeSignature.stencil = ##f
   eis4 ^\markup {clarinet} \p \< (f8) |
-  g2. \f \> ~ g4 \! ~ g32 \startGroup \< (fis f! e) 
-    dis \p \< (e f fis g fis f e) \stopGroup dis16 \! \> (e) |
+  g2. \f \> ~ g4 \! ~ g32 \startGroup \< (fis f! e)
+  dis \p \< (e f fis g fis f e) \stopGroup dis16 \! \> (e) |
   \revert Staff.TimeSignature.stencil
   \time 3/4
   \set baseMoment = #(ly:make-moment 1/8)
   \set beatStructure = #'(2 2 2)
-  f32 \! \< (g a b cis dis eis dis \!) 
-    cis8 \> [ ( \acciaccatura { b16 cis } b8 ) ] \!
-    a8 \> [ ( \acciaccatura { g16 a } g8 ) ] \! |
-  f32 ^\markup {flute} \! \< (g a b cis dis eis dis \!) 
-    cis8 \mf [ ( \acciaccatura { b16 cis } b8 ) ]
-    \afterGrace a4 \trill { g16 (a) } 
+  f32 \! \< (g a b cis dis eis dis \!)
+  cis8 \> [ ( \acciaccatura { b16 cis } b8 ) ] \!
+  a8 \> [ ( \acciaccatura { g16 a } g8 ) ] \! |
+  f32 ^\markup {flute} \! \< (g a b cis dis eis dis \!)
+  cis8 \mf [ ( \acciaccatura { b16 cis } b8 ) ]
+  \afterGrace a4 \trill { g16 (a) }
   \time 12/8
   \set beatStructure = #'(3 3 3 3)
-  bes2. -> \mf ^\markup { clarinet } ~     
-    bes4 ~ bes32 (a aes g) 
+  bes2. -> \mf ^\markup { clarinet } ~
+  bes4 ~ bes32 (a aes g)
   \stopStaff
   \override TextScript #'Y-offset = 0.0
   s4. ^\markup \italic { etc. }
 }
 
+excerptJA = \relative bes {
+  \clef treble
+  \key c \major
+  \time 3/4
+  bes16\f ^\markup \italic "horns" (des des8) ~ des16 (c c8) ~ c16 (bes c des)
+}
+
+excerptJB = \relative es' {
+  \clef treble
+  \key aes \major
+  \time 3/4
+  es16 ^\markup \italic "clarinet" _\markup { \dynamic "p" \italic {doux et expressif (soft and expressive)} } \( g g8 ~ g16 (f) f8 ~ f16 (es) es8
+  ~ es16 (g) g8 ~ g16 (aes) aes8 ~ aes16 bes bes c \)
+  es16 \( (ges16) \< ges8 ~ ges16 (f) f8 ~ f16 (es) es8 ^\markup \italic "+ oboe" \! \)
+  ~ es16 \< \( (ges16) ges8 \! ~ ges16 \> (f) f8 \! ^\markup \italic "+ flute" ~ f16 \> es f ges \! \)
+}
+
+excerptJC = \relative des' {
+  \clef treble
+  \key des \major
+  \time 3/4
+  des16 ^\markup \italic "horn"
+  _\markup {
+    \dynamic p \italic "doux et expressif (soft and expressive)"
+  }
+  \( f f8 ~ f16 es es8 ~ es16 des es f \)
+}
+
+excerptJD = \relative d'' {
+  \clef treble
+  \key e \major
+  \time 4/4
+  <d d'>16
+  ^\markup \italic "two solo violins"
+  _\markup { \dynamic p \italic "très doux et expressif (very soft and expressive)" }
+  \( <fis fis'> <fis fis'>8 ~ <fis fis'>16 <e e'> <e e'>8 ~ <e e'>16
+  <dis dis'> <dis dis'>8 ~ <dis dis'>16 <d d'> <d d'>8 \)
+}
 
 scoreA = \score {
-  \new Staff \with { midiInstrument = "flute" } \excerptA
+  <<
+    \new Staff \with { midiInstrument = "flute" } \excerptA
+    \new Dynamics \excerptADynamics
+  >>
   \layout {}
   \midi { \tempo 4. = 44}
 }
@@ -377,9 +437,53 @@ scoreF = \score {
     ragged-last = ##t
   }
   \score {
-    \new Staff \with { midiInstrument = "clarinet" } \excerptI
+    \new Staff \with { midiInstrument = #"clarinet" } \excerptI
     \layout {}
     \midi {}
   }
 
 }
+
+\book {
+  \paper {
+    ragged-last = ##t
+  }
+  \score {
+    \new Staff \with {
+      \remove Time_signature_engraver
+    } \excerptJA
+    \layout {}
+    \midi { \tempo 4 = 44 }
+  }
+}
+
+\book {
+  \paper {
+    ragged-last = ##t
+  }
+  \score {
+    \new Staff \with { \remove Time_signature_engraver } \excerptJB
+  }
+}
+
+\book {
+  \paper {
+    ragged-last = ##t
+  }
+  \score {
+    \new Staff \with {
+      \remove Time_signature_engraver
+    } \excerptJC
+  }
+}
+
+\book {
+  \paper {
+    ragged-last = ##t
+  }
+  \score {
+    \new Staff \with { \remove Time_signature_engraver } \excerptJD
+  }
+}
+
+
