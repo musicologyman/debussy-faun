@@ -1,6 +1,7 @@
 \version "2.18.2"
 
-\include "functions.ily"
+\include "../lilypond-functions/functions.ily"
+\include "../lilypond-page-sizes/paper-sizes.ily"
 
 \header {
   tagline = ##f
@@ -28,12 +29,13 @@ excerptA = \relative c'' {
   \stemDown
   \set subdivideBeams = ##t
   \once \override TextScript #'color = #blue
-  cis4.~ \startGroup ^\markup { \bold \fontsize #5.0 "head motive" }
+  cis4.~ \startGroup ^\markup { \bold \fontsize #5.0 "a (head motive)" }
   ( cis8 ~ cis16 b \tuplet 3/2 {ais a gis} g8. a16 b bis \stopGroup )
   cis4.~ ( cis8 ~ cis16 b \tuplet 3/2 {ais a gis} g8. a16 b bis )
   \stemNeutral
-  cis8 \< ( dis gis e4 gis,8 b4. ~
-  b8 \! \> b cis ais4 \! )
+  \once \override TextScript #'color = #blue
+  cis8 \startGroup ^\markup { \bold \fontsize #5.0 "b" } \< ( dis gis e4 gis,8 b4. ~
+  b8 \! \> b cis ais4 \! ) \stopGroup
 }
 
 excerptADynamics = {
@@ -70,17 +72,18 @@ excerptD = \relative c'' {
   \set subdivideBeams = ##t
   \override TupletBracket #'stencil = ##f
   \stemDown
-  cis2. \p \< ~ cis8 \! (cis16 b \tuplet 3/2 {ais a gis)} g8. \< (a16 b bis) |
+  \once \override TextScript #'color = #blue
+  cis2. \startGroup ^\markup { \bold \fontsize #5.0 "a"} \p \< ~ cis8 \! (cis16 b \tuplet 3/2 {ais a gis)} g8. \< (a16 b bis) \stopGroup |
   \time 9/8
   \once \override TextScript #'color = #blue
   \set Timing.baseMoment = #(ly:make-moment 1/16)
   \set Timing.beatStructure = #'(6)
-  \tuplet 3/2 { cis32\startGroup ^\markup \bold \fontsize #5.0 interpolation (dis gis }
-  \tuplet 3/2 {e cis gis} b8 \! ~ b16 gis)
+  \tuplet 3/2 { cis32\startGroup ^\markup \bold \fontsize #5.0 { b \normal-text \italic { (sped up) } } (dis gis }
+  \tuplet 3/2 {e cis gis} b8 \! ~ b16 \stopGroup gis)
   \stemNeutral
   \set Timing.baseMoment = #(ly:make-moment 1/8)
   \set Timing.beatStructure = #'(3 3 3)
-  fis8 ~ (fis16 gis fis8 ~ fis16 gis dis8. e16\stopGroup)
+  fis8 ~ (fis16 gis fis8 ~ fis16 gis dis8. e16)
   \time 12/8
   a2. ~ a8 ~ (a16 gis \tuplet 3/2 { g fis f) } e8. (fis16 g gis) |
   \time 9/8
