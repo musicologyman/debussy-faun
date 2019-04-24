@@ -4,5 +4,6 @@
 *.pdf
 *.mid
 .vscode/
+.ipynb_checkpoints/
 debussy-faun.html
 listening-guide
