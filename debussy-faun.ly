@@ -42,6 +42,23 @@ excerptADynamics = {
   s2. ^\markup { \dynamic p \italic { "  doux et expressiv" } }
 }
 
+scoreA = \score {
+  <<
+    \new Staff \with { midiInstrument = "flute" } \excerptA
+    \new Dynamics \excerptADynamics
+  >>
+  \layout {}
+  \midi { \tempo 4. = 44}
+}
+
+\book {
+  \paper {
+    #(set-paper-size "size 8.5-2.5")
+    ragged-last = ##t
+  }
+  \scoreA
+}
+
 excerptBRight = \relative c' {
   \key e \major
   <cis e gis ais>1
@@ -55,6 +72,23 @@ excerptBLeft = \relative c, {
   <bes f' bes>1
 }
 
+scoreB = \score {
+  \new PianoStaff <<
+    \new Staff \with { \remove Time_signature_engraver } \excerptBRight
+    \new Staff \with { \remove Time_signature_engraver } \excerptBLeft
+  >>
+  \layout {}
+  \midi {}
+}
+
+\book {
+  \paper {
+    #(set-paper-size "size 2.5-2")
+    ragged-last = ##t
+  }
+  \scoreB
+}
+
 excerptC = \relative c''' {
   \key des \major
   \time 3/4
@@ -63,6 +97,22 @@ excerptC = \relative c''' {
   es4. des8 ~ des [f,])
   bes'4-> ~ ( bes8 aes4 f8
   es4 ~ es8 des4 ces8 )
+}
+
+scoreC = \score {
+  \new PianoStaff <<
+    \new Staff \with { \remove Time_signature_engraver } \excerptC
+  >>
+  \layout {}
+  \midi { \tempo 4. = 44 }
+}
+
+\book {
+  \paper {
+    #(set-paper-size "size 5-1")
+    ragged-last = ##t
+  }
+  \scoreC
 }
 
 excerptD = \relative c'' {
@@ -97,6 +147,21 @@ excerptD = \relative c'' {
   \override Stem #'transparent = ##t
   \override Dots #'transparent = ##t
   cis2.
+}
+
+scoreD = \score {
+  \new Staff \with { midiInstrument = "flute" } \excerptD
+  \layout {}
+  \midi { \tempo 4. = 44 }
+}
+
+\book {
+  \paper {
+    #(set-paper-size "size 8.5-1.5")
+    ragged-last = ##t
+    print-page-number = ##f
+  }
+  \scoreD
 }
 
 excerptERight = \relative c' {
@@ -143,6 +208,30 @@ excerptELeft = \relative c {
   s8
 }
 
+scoreE = \score {
+  <<
+    \new Staff \with {
+      midiInstrument = "acoustic grand"
+      midiMaximumVolume = #0.6
+    } \excerptERight
+    \new Staff \with {
+      midiInstrument = "acoustic grand"
+      midiMaximumVolume = #0.5
+    } \excerptELeft
+  >>
+  \layout {}
+  \midi { \tempo 4. = 44 }
+}
+
+\book {
+  \paper {
+    #(set-paper-size "size 8.5-2")
+    ragged-last = ##t
+    print-page-number = ##f
+  }
+  \scoreE
+}
+
 excerptF = \relative c'' {
   \key e \major
   \time 3/4
@@ -156,6 +245,21 @@ excerptF = \relative c'' {
   \override HorizontalBracket #'outside-staff-priority = 1000
   gis16 \startGroup ^\markup \italic violins \cresc (b16 b8) ~ b16 (d d8) ~ d16 (b cis d\stopGroup)
   s \!
+}
+
+scoreF = \score {
+  \new Staff \with { \remove Time_signature_engraver } \excerptF
+  \layout {}
+  \midi { \tempo 4 = 72 }
+}
+
+\book {
+  \paper {
+    #(set-paper-size "size 8.5-2.5")
+    ragged-last = ##t
+    print-page-number = ##f
+  }
+  \scoreF
 }
 
 excerptG = \relative c'' {
@@ -184,6 +288,20 @@ excerptG = \relative c'' {
   \tuplet 3/2 { a16 \< (b a c d c } e8) ~ \tuplet 3/2 { e16 (fis e } a8. b16)
   \tuplet 3/2 { e,16 (fis e } a8. b16) |
   c4 \! \> (c,8) ~ c8 b c ~ c b c \! |
+}
+
+\book {
+  \paper {
+    #(set-paper-size "size 8.5-1.5")
+    ragged-last = ##t
+    print-page-number = ##f
+  }
+  \score {
+    \new Staff \with { midiInstrument = "flute" } \excerptG
+    \layout {}
+    \midi {}
+  }
+
 }
 
 excerptH = \relative cis'' {
@@ -239,6 +357,20 @@ excerptH = \relative cis'' {
   b2. \p \> ~ b4 \stopTextSpan \! r8
 }
 
+\book {
+  \paper {
+    #(set-paper-size "size 8.5-1.5")
+    ragged-last = ##t
+    print-page-number = ##f
+  }
+  \score {
+    \new Staff \with { midiInstrument = "flute" } \excerptH
+    \layout {}
+    \midi {}
+  }
+
+}
+
 excerptI = \relative gis' {
   \key e \major
   \time 12/8
@@ -268,11 +400,40 @@ excerptI = \relative gis' {
   s4. ^\markup \italic { etc. }
 }
 
+\book {
+  \paper {
+    #(set-paper-size "size 8.5-1.5")
+    ragged-last = ##t
+    print-page-number = ##f
+  }
+  \score {
+    \new Staff \with { midiInstrument = #"clarinet" } \excerptI
+    \layout {}
+    \midi {}
+  }
+
+}
+
 excerptJA = \relative bes {
   \clef treble
   \key c \major
   \time 3/4
   bes16\f ^\markup \italic "horns" (des des8) ~ des16 (c c8) ~ c16 (bes c des)
+}
+
+\book {
+  \paper {
+    #(set-paper-size "size 3-1")
+    ragged-last = ##t
+    print-page-number = ##f
+  }
+  \score {
+    \new Staff \with {
+      \remove Time_signature_engraver
+    } \excerptJA
+    \layout {}
+    \midi { \tempo 4 = 44 }
+  }
 }
 
 excerptJB = \relative es' {
@@ -283,6 +444,24 @@ excerptJB = \relative es' {
   ~ es16 (g) g8 ~ g16 (aes) aes8 ~ aes16 bes bes c \)
   es16 \( (ges16) \< ges8 ~ ges16 (f) f8 ~ f16 (es) es8 ^\markup \italic "+ oboe" \! \)
   ~ es16 \< \( (ges16) ges8 \! ~ ges16 \> (f) f8 \! ^\markup \italic "+ flute" ~ f16 \> es f ges \! \)
+}
+
+
+\book {
+  \paper {
+    #(set-paper-size "size 6-2")
+    ragged-last-bottom = ##f
+    print-page-number = ##f
+  }
+  \score {
+    \new Staff \excerptJB
+    \layout {
+      \context {
+        \Staff
+        \remove Time_signature_engraver
+      }
+    }
+  }
 }
 
 excerptJC = \relative des' {
@@ -296,6 +475,18 @@ excerptJC = \relative des' {
   \( f f8 ~ f16 es es8 ~ es16 des es f \)
 }
 
+\book {
+  \paper {
+    #(set-paper-size "size 4-1")
+    ragged-last = ##t
+  }
+  \score {
+    \new Staff \with {
+      \remove Time_signature_engraver
+    } \excerptJC
+  }
+}
+
 excerptJD = \relative d'' {
   \clef treble
   \key e \major
@@ -307,181 +498,9 @@ excerptJD = \relative d'' {
   <dis dis'> <dis dis'>8 ~ <dis dis'>16 <d d'> <d d'>8 \)
 }
 
-scoreA = \score {
-  <<
-    \new Staff \with { midiInstrument = "flute" } \excerptA
-    \new Dynamics \excerptADynamics
-  >>
-  \layout {}
-  \midi { \tempo 4. = 44}
-}
-
-scoreB = \score {
-  \new PianoStaff <<
-    \new Staff \with { \remove Time_signature_engraver } \excerptBRight
-    \new Staff \with { \remove Time_signature_engraver } \excerptBLeft
-  >>
-  \layout {}
-  \midi {}
-}
-
-
-scoreC = \score {
-  \new PianoStaff <<
-    \new Staff \with { \remove Time_signature_engraver } \excerptC
-  >>
-  \layout {}
-  \midi { \tempo 4. = 44 }
-}
-
-
-scoreD = \score {
-  \new Staff \with { midiInstrument = "flute" } \excerptD
-  \layout {}
-  \midi { \tempo 4. = 44 }
-}
-
-scoreE = \score {
-  <<
-    \new Staff \with {
-      midiInstrument = "acoustic grand"
-      midiMaximumVolume = #0.6
-    } \excerptERight
-    \new Staff \with {
-      midiInstrument = "acoustic grand"
-      midiMaximumVolume = #0.5
-    } \excerptELeft
-  >>
-  \layout {}
-  \midi { \tempo 4. = 44 }
-}
-
-
-scoreF = \score {
-  \new Staff \with { \remove Time_signature_engraver } \excerptF
-  \layout {}
-  \midi { \tempo 4 = 72 }
-}
-
 \book {
   \paper {
-    ragged-last = ##t
-  }
-  \scoreA
-}
-
-
-\book {
-  \paper {
-    ragged-last = ##t
-  }
-  \scoreB
-}
-
-
-\book {
-  \paper {
-    ragged-last = ##t
-  }
-  \scoreC
-}
-
-
-\book {
-  \paper {
-    ragged-last = ##t
-  }
-  \scoreD
-}
-
-
-\book {
-  \paper {
-    ragged-last = ##t
-  }
-  \scoreE
-}
-
-
-\book {
-  \paper {
-    ragged-last = ##t
-  }
-  \scoreF
-}
-
-\book {
-  \paper {
-    ragged-last = ##t
-  }
-  \score {
-    \new Staff \with { midiInstrument = "flute" } \excerptG
-    \layout {}
-    \midi {}
-  }
-
-}
-
-\book {
-  \paper {
-    ragged-last = ##t
-  }
-  \score {
-    \new Staff \with { midiInstrument = "flute" } \excerptH
-    \layout {}
-    \midi {}
-  }
-
-}
-
-
-\book {
-  \paper {
-    ragged-last = ##t
-  }
-  \score {
-    \new Staff \with { midiInstrument = #"clarinet" } \excerptI
-    \layout {}
-    \midi {}
-  }
-
-}
-
-\book {
-  \paper {
-    ragged-last = ##t
-  }
-  \score {
-    \new Staff \with {
-      \remove Time_signature_engraver
-    } \excerptJA
-    \layout {}
-    \midi { \tempo 4 = 44 }
-  }
-}
-
-\book {
-  \paper {
-    ragged-last = ##t
-  }
-  \score {
-    \new Staff \with { \remove Time_signature_engraver } \excerptJB
-  }
-}
-
-\book {
-  \paper {
-    ragged-last = ##t
-  }
-  \score {
-    \new Staff \with {
-      \remove Time_signature_engraver
-    } \excerptJC
-  }
-}
-
-\book {
-  \paper {
+    #(set-paper-size "size 5-2")
     ragged-last = ##t
   }
   \score {
